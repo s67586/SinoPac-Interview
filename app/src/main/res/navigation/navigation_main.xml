@@ -13,11 +13,5 @@
             tools:layout="@layout/fragment_main">
     </fragment>
 
-    <fragment
-        android:id="@+id/DetailFragment"
-        android:name="com.example.sinopac_interview.ui.detail.DetailFragment"
-        android:label="DetailFragment"
-        tools:layout="@layout/fragment_detail">
-    </fragment>
 
 </navigation>
