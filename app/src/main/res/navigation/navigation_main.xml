@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main_navigation"
+        app:startDestination="@id/MainFragment"
+        tools:ignore="UnusedNavigation">
+
+    <fragment
+            android:id="@+id/MainFragment"
+            android:name="com.example.sinopac_interview.ui.main.MainFragment"
+            android:label="MainFragment"
+            tools:layout="@layout/fragment_main">
+    </fragment>
+
+    <fragment
+        android:id="@+id/DetailFragment"
+        android:name="com.example.sinopac_interview.ui.detail.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail">
+    </fragment>
+
+</navigation>
