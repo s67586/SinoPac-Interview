@@ -13,25 +13,12 @@ import com.google.gson.annotations.SerializedName
  ****************************************************/
 
 open class BaseResult<T>(
-    @SerializedName("code")
-    val mCode: Int = -1,
+    @SerializedName("err")
+    val mErr: Boolean = false,
     @SerializedName("data")
     val mData: T? = null,
-    @SerializedName("msg")
-    val mMsg: String = "",
-    @SerializedName("token")
-    val mToken: String = "",
-    @SerializedName("paging")
-    val mPaging: Paging? = null
-)
-
-data class Paging(
-    @SerializedName("page")
-    val mPage: Int,
-    @SerializedName("size")
-    val mSize: Int,
-    @SerializedName("total_count")
-    val mTotalCount: Int,
-    @SerializedName("total_page")
-    val mTotalPage: Int
+    @SerializedName("statusMsg")
+    val mStatusMsg: String = "",
+    @SerializedName("statusCode")
+    val mStatusCode: String = "",
 )
