@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class ResponseNewsListModel(
     @SerializedName("filtered")
-    val mFiltered: List<Filtered>,
+    val mFiltered: List<Filtered> = emptyList(),
     @SerializedName("page")
     val mPage: Int,
     @SerializedName("total")
