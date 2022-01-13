@@ -2,13 +2,9 @@ package com.example.sinopac_interview.base
 
 import android.annotation.SuppressLint
 import android.graphics.PixelFormat
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.viewbinding.ViewBinding
 
 
