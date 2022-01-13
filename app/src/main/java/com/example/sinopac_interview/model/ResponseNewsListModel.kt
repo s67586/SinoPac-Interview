@@ -34,7 +34,7 @@ data class ResponseNewsListModel(
         @SerializedName("summary")
         val mSummary: String,
         @SerializedName("thumbs")
-        val mThumbs: List<Thumb>,
+        val mThumbs: List<Thumb>? = emptyList(),
         @SerializedName("title")
         val mTitle: String
     ) {
