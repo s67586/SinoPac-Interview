@@ -36,7 +36,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun initConfiguration() {
         mBinding.rvMainFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        mBinding.rvMainFragmentRecyclerView.adapter = mAdapter
+        mBinding.rvMainFragmentRecyclerView.adapter = mAdapter.withLoadStateFooter(FooterAdapter(onRetry = { mAdapter.retry() }))
     }
 
     override fun initListener() {

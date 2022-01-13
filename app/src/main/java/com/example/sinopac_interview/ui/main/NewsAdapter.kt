@@ -41,12 +41,6 @@ class NewsAdapter :
         }
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val mDate: TextView = itemView.findViewById(R.id.tv_news_adapter_date)
-        val mTitle: TextView = itemView.findViewById(R.id.tv_news_adapter_title)
-        val mImage: ImageView = itemView.findViewById(R.id.iv_news_adapter_title)
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         mContext = parent.context
         val view = LayoutInflater.from(mContext).inflate(R.layout.news_item, parent, false)
@@ -74,5 +68,12 @@ class NewsAdapter :
 
         }
     }
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val mDate: TextView = itemView.findViewById(R.id.tv_news_adapter_date)
+        val mTitle: TextView = itemView.findViewById(R.id.tv_news_adapter_title)
+        val mImage: ImageView = itemView.findViewById(R.id.iv_news_adapter_title)
+    }
+
 
 }
