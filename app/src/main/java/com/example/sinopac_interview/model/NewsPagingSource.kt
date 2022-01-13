@@ -3,7 +3,7 @@ package com.example.sinopac_interview.model
 import android.accounts.NetworkErrorException
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.sinopac_interview.base.ALog
+import com.example.sinopac_interview.util.ALog
 import com.example.sinopac_interview.network.BaseResponse
 import com.example.sinopac_interview.network.Client
 

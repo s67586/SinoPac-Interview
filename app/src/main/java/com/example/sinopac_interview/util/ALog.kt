@@ -1,4 +1,4 @@
-package com.example.sinopac_interview.base
+package com.example.sinopac_interview.util
 
 import android.content.res.Resources
 import android.graphics.drawable.ColorDrawable

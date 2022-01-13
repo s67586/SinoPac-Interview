@@ -13,8 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:maxLines="1"
-        android:textColor="#5194fd"
-        android:textSize="20sp"
+        android:textColor="#8a8a89"
         tools:text="2019-09-09"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,6 +26,8 @@
         android:layout_marginTop="10dp"
         android:maxLines="2"
         tools:text="tv_news_adapter_title"
+        android:textColor="#cbcbca"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_news_adapter_date"
         app:layout_constraintEnd_toStartOf="@+id/iv_news_adapter_title"/>

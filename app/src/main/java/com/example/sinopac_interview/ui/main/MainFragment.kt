@@ -1,12 +1,12 @@
 package com.example.sinopac_interview.ui.main
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sinopac_interview.base.ALog
+import com.example.sinopac_interview.R
 import com.example.sinopac_interview.base.BaseFragment
 import com.example.sinopac_interview.databinding.FragmentMainBinding
 import com.example.sinopac_interview.ui.MainViewModel
@@ -26,7 +26,10 @@ import kotlinx.coroutines.launch
 class MainFragment : BaseFragment<FragmentMainBinding>() {
     private val mViewModel by activityViewModels<MainViewModel>()
     private val mAdapter by lazy {
-        NewsAdapter()
+        NewsAdapter(onItemClick = {newsDetailModel ->
+            mViewModel.setNewsDetailData(newsDetailModel)
+            findNavController().navigate(R.id.action_MainFragment_to_DetailFragment)
+        })
     }
     override val mBindingInflater: (LayoutInflater, ViewGroup?, Boolean) ->
     FragmentMainBinding = FragmentMainBinding::inflate
