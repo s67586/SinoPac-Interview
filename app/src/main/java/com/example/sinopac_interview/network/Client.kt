@@ -1,6 +1,6 @@
 package com.example.sinopac_interview.network
 
-import android.widget.Toast
+import com.example.sinopac_interview.BuildConfig
 import com.example.sinopac_interview.model.BaseResult
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +22,7 @@ object Client {
             .addInterceptor(Interceptor { chain ->
                 val newRequest = chain.request().newBuilder()
                     .addHeader("Content-Type", "application/json")
-                    .addHeader("Authorization","Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDFiYTVhODg1MGViMzRjNTg2ODg5Y2MiLCJtb2RlbCI6IkFwcERldmljZSIsImlhdCI6MTYxMjQyNTM0NywiZXhwIjoxNjI3OTc3MzQ3fQ.8ATkhNKUP_vCSCplIyfQV6Udd6kXE6mPXeudVIZUsXs")
+                    .addHeader("Authorization", BuildConfig.TOKEN)
                     .url(chain.request().url)
                     .build()
 
@@ -34,7 +34,7 @@ object Client {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://fintech.eastasia.cloudapp.azure.com/")
+            .baseUrl(BuildConfig.HOST)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
@@ -57,12 +57,7 @@ object Client {
                     } else {
                         BaseResponse.Success(response.body()!!)
                     }
-                } else if (response.code() == 400) {
-                    val errorResult = Gson().fromJson(
-                        response.errorBody()?.string(),
-                        BaseResult::class.java)
-                    BaseResponse.Fail(errorResult)
-                } else {
+                }  else {
                     BaseResponse.Error(HttpException(response))
                 }
             } catch (e: Exception) {

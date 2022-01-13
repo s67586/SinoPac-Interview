@@ -33,6 +33,18 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+    flavorDimensions "default"
+    productFlavors {
+        dev {
+            buildConfigField "String", "HOST", "\"https://fintech.eastasia.cloudapp.azure.com/\""
+            buildConfigField "String", "TOKEN", "\"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDFiYTVhODg1MGViMzRjNTg2ODg5Y2MiLCJtb2RlbCI6IkFwcERldmljZSIsImlhdCI6MTYxMjQyNTM0NywiZXhwIjoxNjI3OTc3MzQ3fQ.8ATkhNKUP_vCSCplIyfQV6Udd6kXE6mPXeudVIZUsXs\""
+        }
+        sit {
+        }
+        uat {
+        }
+    }
 }
 
 dependencies {
@@ -66,5 +78,5 @@ dependencies {
     implementation'com.squareup.okhttp3:okhttp:4.9.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
 
-    implementation 'androidx.paging:paging-runtime:3.1.0'
+    implementation 'androidx.paging:paging-runtime-ktx:3.1.0'
 }
