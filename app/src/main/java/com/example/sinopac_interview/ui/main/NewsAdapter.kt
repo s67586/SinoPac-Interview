@@ -14,7 +14,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.sinopac_interview.R
+import com.example.sinopac_interview.base.ALog
 import com.example.sinopac_interview.model.ResponseNewsListModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NewsAdapter :
     PagingDataAdapter<ResponseNewsListModel.Filtered, NewsAdapter.ViewHolder>(COMPARATOR) {
@@ -53,7 +56,11 @@ class NewsAdapter :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val mModel = getItem(position)
         mModel?.let { model ->
-            holder.mDate.text = model.mPubDate
+            val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").apply {
+                timeZone = TimeZone.getTimeZone("GMT+8")
+            }.parse(model.mPubDate)
+
+            holder.mDate.text = SimpleDateFormat("yyyy-MM-dd HH:mm").format(date?: Date(System.currentTimeMillis()))
             holder.mTitle.text = model.mTitle
 
             Glide.with(mContext)
