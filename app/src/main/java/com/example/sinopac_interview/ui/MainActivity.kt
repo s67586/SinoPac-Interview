@@ -6,6 +6,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.sinopac_interview.base.ALog
 import com.example.sinopac_interview.base.BaseActivity
 import com.example.sinopac_interview.databinding.ActivityMainBinding
+import com.example.sinopac_interview.network.BaseResponse
+import com.example.sinopac_interview.network.Client
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.collect
@@ -22,6 +24,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 ALog.e("jsaiedwe = ${pagingData.toString()}")
             }
         }
+
+//        lifecycleScope.launch(Dispatchers.IO){
+//            when(val newsData = Client.safeApiCall { Client.apiService.getNewsList(3) }){
+//                is BaseResponse.Success->{
+//                    ALog.e("awjieje = ${newsData.data.mData}")
+//                }
+//            }
+//        }
     }
 
     override fun initListener() {

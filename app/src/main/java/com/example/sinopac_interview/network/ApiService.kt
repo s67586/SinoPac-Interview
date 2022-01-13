@@ -10,6 +10,6 @@ import retrofit2.http.Query
 interface ApiService {
     //取得新聞
     @GET("api/news")
-    suspend fun getNewsList(@Query("page") page: Int, @Query("limit") limit: Int = 50): BaseResult<ResponseNewsListModel>
+    suspend fun getNewsList(@Query("page") page: Int, @Query("limit") limit: Int = 50): Response<BaseResult<ResponseNewsListModel>>
 }
 

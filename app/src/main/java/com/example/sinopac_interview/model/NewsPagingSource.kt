@@ -1,5 +1,6 @@
 package com.example.sinopac_interview.model
 
+import android.accounts.NetworkErrorException
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.sinopac_interview.base.ALog
@@ -13,14 +14,23 @@ class NewsPagingSource() :
         return try {
             val page = params.key ?: 1 // set page 1 as default
             val pageSize = params.loadSize
-            val repoResponse = Client.apiService.getNewsList(page,pageSize)
-            val repoItems = repoResponse.mData?.mFiltered ?: emptyList()
-            val prevKey = if (page > 1) page - 1 else null
-            val nextKey = if (repoItems.isNotEmpty()) page + 1 else null
 
-            ALog.e("wekoqje = ${repoItems}")
-            LoadResult.Page(repoItems, prevKey, nextKey)
+            when(val newsData = Client.safeApiCall { Client.apiService.getNewsList(page,pageSize) }){
+                is BaseResponse.Success->{
+                    ALog.e("Success")
+                    val repoResponse = newsData.data.mData
+                    val repoItems =  repoResponse?.mFiltered
+                    val prevKey = if (page > 1) page - 1 else null
+                    val nextKey = if (repoItems?.isNotEmpty() == true) page + 1 else null
+                    LoadResult.Page(repoItems ?: emptyList(), prevKey, nextKey)
+                }
+                else -> {
+                    ALog.e("Error")
+                    LoadResult.Error(NetworkErrorException())
+                }
+            }
         } catch (e: Exception) {
+            ALog.e("Exception")
             e.printStackTrace()
             LoadResult.Error(e)
         }
