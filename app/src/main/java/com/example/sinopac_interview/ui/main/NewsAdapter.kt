@@ -16,7 +16,6 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.sinopac_interview.R
 import com.example.sinopac_interview.model.ResponseNewsListModel
 import com.example.sinopac_interview.util.convertTimeFormat
-import java.util.*
 
 class NewsAdapter(val onItemClick: (ResponseNewsListModel.Filtered) -> Unit) :
     PagingDataAdapter<ResponseNewsListModel.Filtered, NewsAdapter.ViewHolder>(COMPARATOR) {
@@ -38,12 +37,6 @@ class NewsAdapter(val onItemClick: (ResponseNewsListModel.Filtered) -> Unit) :
                 return oldItem == newItem
             }
         }
-    }
-
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val mDate: TextView = itemView.findViewById(R.id.tv_news_adapter_date)
-        val mTitle: TextView = itemView.findViewById(R.id.tv_news_adapter_title)
-        val mImage: ImageView = itemView.findViewById(R.id.iv_news_adapter_title)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -70,5 +63,11 @@ class NewsAdapter(val onItemClick: (ResponseNewsListModel.Filtered) -> Unit) :
                 onItemClick.invoke(model)
             }
         }
+    }
+
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val mDate: TextView = itemView.findViewById(R.id.tv_news_adapter_date)
+        val mTitle: TextView = itemView.findViewById(R.id.tv_news_adapter_title)
+        val mImage: ImageView = itemView.findViewById(R.id.iv_news_adapter_title)
     }
 }

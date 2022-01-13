@@ -1,10 +1,13 @@
 package com.example.sinopac_interview.ui.main
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sinopac_interview.R
 import com.example.sinopac_interview.base.BaseFragment
@@ -36,10 +39,31 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun initConfiguration() {
         mBinding.rvMainFragmentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        mBinding.rvMainFragmentRecyclerView.adapter = mAdapter
+        mBinding.rvMainFragmentRecyclerView.adapter = mAdapter.withLoadStateFooter(FooterAdapter(onRetry = { mAdapter.retry() }))
     }
 
     override fun initListener() {
+        mAdapter.addLoadStateListener {
+            when (it.refresh) {
+                is LoadState.NotLoading -> {
+                    mBinding.pbMainFragmentProgressBar.visibility = View.INVISIBLE
+                    mBinding.rvMainFragmentRecyclerView.visibility = View.VISIBLE
+                }
+                is LoadState.Loading -> {
+                    mBinding.pbMainFragmentProgressBar.visibility = View.VISIBLE
+                    mBinding.rvMainFragmentRecyclerView.visibility = View.INVISIBLE
+                }
+                is LoadState.Error -> {
+                    val state = it.refresh as LoadState.Error
+                    mBinding.pbMainFragmentProgressBar.visibility = View.INVISIBLE
+                    Toast.makeText(
+                        requireContext(),
+                        "發生錯誤: ${state.error.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
     }
 
     override fun observeLiveData() {
